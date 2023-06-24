@@ -1,3 +1,11 @@
+:root{
+    --red: rgb(241, 145, 145);
+    --dark-red: rgb(146, 47, 47);
+
+    --blue: rgb(150, 201, 248);
+    --dark-blue: rgb(60, 119, 175);
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -15,17 +23,45 @@ body {
 .board {    
     width: 45vw;
     height: 45vw;
-    padding: 5px;
+    padding: 10px;
     background-color: black;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-    grid-gap: 5px;
+    grid-gap: 10px;
     align-content: stretch;
+    border-radius: 10px;
 }
 
 .spot {
+    background-color: white;
     display: flex;
-    font-size: large;
+    font-size: 80px;
+    font-weight: bold;
     height: 100%;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+}
+
+.spot:hover{
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1) inset;
+    background-color: rgb(240, 240, 240);
+}
+
+.spot.x,
+.spot.o{
+    cursor: default;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1) inset
+}
+
+.spot.x {
+    background-color: var(--red);
+    color: var(--dark-red);
+}
+
+.spot.o{
+    background-color: var(--blue);
+    color: var(--dark-blue);
 }

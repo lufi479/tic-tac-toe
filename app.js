@@ -132,10 +132,25 @@ const displayController = (() => {
                 spotButton.classList.add("spot");
                 spotButton.dataset.position = rowIndex + " " + colIndex;
                 spotButton.textContent = spot;
+                if (spot !== ""){
+                    spotButton.classList.add(spot.toLowerCase());
+                }
                 boardDiv.appendChild(spotButton);
             })
         })
     }
+
+    function clickSpot(e){
+        const selectedSpot = e.target.dataset.position;
+        if (!selectedSpot || e.target.classList[1]){
+            return;
+        }
+        console.log(e.target.classList[0]);
+        gameController.playRound(selectedSpot);
+        updateDisplay();
+    }
+
+    boardDiv.addEventListener("click", clickSpot);
 
     return {
         updateDisplay
