@@ -97,9 +97,11 @@ const gameController = ((playerOneName = "Player One", playerTwoName = "Player T
         console.log(check);
         if (check === players[0].getMark()){
             console.log(`${players[0].getName()} Wins!`);
+            players[0].increaseWinCount();
         }
         else if (check === players[1].getMark()){
             console.log(`${players[1].getName()} Wins!`);
+            players[1].increaseWinCount();
         }
 
         switchActivePlayer();
@@ -109,8 +111,37 @@ const gameController = ((playerOneName = "Player One", playerTwoName = "Player T
     return {
         playRound,
         getActivePlayer
-    }
+    };
 
 })();
 
+const displayController = (() => {
+    const activePlayerDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".board");
+
+    const updateDisplay = () =>{
+        boardDiv.textContent = "";
+        const board = gameBoard.getBoard();
+        const activePlayer = gameController.getActivePlayer();
+
+        activePlayerDiv.textContent = `${activePlayer.getName()}'s Turn`;
+
+        board.forEach((row, rowIndex) => {
+            row.forEach((spot, colIndex) => {
+                const spotButton = document.createElement("button");
+                spotButton.classList.add("spot");
+                spotButton.dataset.position = rowIndex + " " + colIndex;
+                spotButton.textContent = spot;
+                boardDiv.appendChild(spotButton);
+            })
+        })
+    }
+
+    return {
+        updateDisplay
+    };
+})();
+
 gameBoard.makeBoard();
+
+displayController.updateDisplay();
