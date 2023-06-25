@@ -21,8 +21,8 @@ body {
 }
 
 .board {    
-    width: 45vw;
-    height: 45vw;
+    width: 600px;
+    height: 600px;
     padding: 10px;
     background-color: black;
     display: grid;
