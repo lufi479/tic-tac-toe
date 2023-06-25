@@ -46,13 +46,18 @@ const gameBoard = (() =>{
 
 })();
 
-const gameController = ((playerOneName = "Player One", playerTwoName = "Player Two") => {
+const gameController = (() => {
 
-    const players = [Player(playerOneName, "X"), Player(playerTwoName, "O")];
+    const players = [Player("Player One", "X"), Player("Player Two", "O")];
 
     let turn = 0;
 
     let activePlayer = players[0];
+
+    const setNames = (nameOne, nameTwo) => {
+        players[0].setName(nameOne);
+        players[1].setName(nameTwo);
+    }
 
     const switchActivePlayer = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -119,7 +124,8 @@ const gameController = ((playerOneName = "Player One", playerTwoName = "Player T
 
     return {
         playRound,
-        getActivePlayer
+        getActivePlayer,
+        setNames
     };
 
 })();
@@ -178,13 +184,28 @@ const displayController = (() => {
         
     }
 
+    function startGame(e){
+        e.preventDefault();
+        console.log("lmao");
+        let formData = new FormData(this);
+        const playerOneName = formData.get("one-name");
+        const playerTwoName = formData.get("two-name");
+        gameController.setNames(playerOneName, playerTwoName);
+        gameBoard.makeBoard();
+        updateDisplay();
+        document.querySelector(".begin").style.display = "none";
+        document.querySelector(".container").style.display = "block";
+    }
+
     boardDiv.addEventListener("click", clickSpot);
+
+    document.querySelector(".name-form").addEventListener("submit", startGame);
 
     return {
         updateDisplay
     };
 })();
 
-gameBoard.makeBoard();
+//gameBoard.makeBoard();
 
-displayController.updateDisplay();
+//displayController.updateDisplay();

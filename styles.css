@@ -16,11 +16,16 @@ body {
     align-items: center;
 }
 
-.container {
+.game{
 
 }
 
-.board {    
+.container {
+    display: none;
+}
+
+.board { 
+
     width: 600px;
     height: 600px;
     padding: 10px;

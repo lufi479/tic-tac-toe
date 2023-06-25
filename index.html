@@ -8,9 +8,23 @@
     <script src="app.js" defer></script>
 </head>
 <body>
-    <h1 class="turn"></h1>
-    <div class="container">
-        <div class="board"></div>
+    <div class="game">
+        <h2 class="turn"></h2>
+        <div class="container">
+            <div class="board"></div>
+        </div>
     </div>
-</body>
+    <div class="begin">
+        <h1>Tic Tac Toe</h1>
+        <form action="#" class="name-form">
+            <div class="form-header">Enter your names:</div>
+            <label for="player-one-name">Player One:</label>
+            <input id="player-one-name" name="one-name" type="text" value="Player One" required>
+            
+            <label for="player-two-name">Player Two:</label>
+            
+            <input id="player-two-name" name="two-name" type="text" value="Player Two" required>
+            <button type="submit" id="start-btn">Start Game</button>
+        </form>
+    </div>
 </html>
