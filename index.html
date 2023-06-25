@@ -16,15 +16,17 @@
     </div>
     <div class="begin">
         <h1>Tic Tac Toe</h1>
-        <form action="#" class="name-form">
-            <div class="form-header">Enter your names:</div>
-            <label for="player-one-name">Player One:</label>
-            <input id="player-one-name" name="one-name" type="text" value="Player One" required>
+        <div class="form-container">
+            <form action="#" class="name-form">
+                <div class="form-header">Enter your names:</div>
+                <label for="player-one-name">Player One:</label>
+                <input id="player-one-name" name="one-name" type="text" value="Player One" maxlength="20" required>
             
-            <label for="player-two-name">Player Two:</label>
+                <label for="player-two-name">Player Two:</label>
             
-            <input id="player-two-name" name="two-name" type="text" value="Player Two" required>
-            <button type="submit" id="start-btn">Start Game</button>
-        </form>
+                <input id="player-two-name" name="two-name" type="text" value="Player Two" maxlength="20" required>
+                <button type="submit" id="start-btn" class="ui-btn">Start Game</button>
+            </form>
+        </div>
     </div>
 </html>

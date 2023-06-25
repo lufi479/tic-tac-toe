@@ -4,6 +4,10 @@
 
     --blue: rgb(150, 201, 248);
     --dark-blue: rgb(60, 119, 175);
+
+    --purple: rgb(181, 146, 209);
+
+    --yellow: rgb(252, 208, 128);
 }
 
 * {
@@ -14,6 +18,59 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--purple);
+}
+
+h1 {
+    font-size: 80px;
+    color: var(--yellow);
+    text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+}
+
+button{
+    cursor: pointer;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.name-form{
+    display: block;
+    font-size: 18px;
+
+}
+form>.form-header{
+    font-size: 1.5em;
+}
+
+form *{
+    display: block;
+    margin-bottom: 5px
+}
+
+form>label{
+    font-weight: bold;
+}
+
+form input {
+    margin-bottom: 25px;
+    font-size: .9em;
+}
+
+button.ui-btn{
+    padding:10px;
+    font-size: 18px;
+    background-color: var(--yellow);
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+input[type="text"]{
+    padding: 5px;
 }
 
 .game{
@@ -50,8 +107,12 @@ body {
     border: none;
 }
 
-.spot:hover{
+button:hover{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 1) inset;
+}
+
+.spot:hover{
+    
     background-color: rgb(240, 240, 240);
 }
 
