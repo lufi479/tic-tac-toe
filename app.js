@@ -1,19 +1,13 @@
 const Player = (name, mark) => {
-    let winCount = 0;
     const getName = () => name;
     const getMark = () => mark;
-    const getWinCount = () => winCount;
 
     const setName = (newName) => {
         name = newName;
     }
 
-    const increaseWinCount = () => {
-        winCount++;
-    }
-
     return {
-        getName, getMark, getWinCount, increaseWinCount, setName
+        getName, getMark, setName
     };
 };
 
@@ -66,9 +60,7 @@ const gameController = (() => {
     const getActivePlayer = () => activePlayer;
 
     const checkWinner = () => {
-        let retVal = " ";
         const board = gameBoard.getBoard();
-        console.log(board);
         if ((board[0][0]!= "") && ((board[0][0] === board[1][1]) && (board[1][1] === board[2][2]))){
             return board[0][0]
         }
@@ -77,7 +69,6 @@ const gameController = (() => {
         }
         else {
             for (let i = 0; i < 3; i++){
-                console.log(board[0][i] + " " + board[1][i] +" " + board[2][i]);
                 if ((board[0][i]!= "") && ((board[0][i] === board[1][i]) && (board[1][i] === board[2][i]))){
                     return board[0][i]
                 }
@@ -93,14 +84,11 @@ const gameController = (() => {
         gameBoard.placeMark(activePlayer, position);
 
         let check = checkWinner();
-        console.log(check);
         if (check === players[0].getMark()){
-            players[0].increaseWinCount();
             switchActivePlayer();
             return players[0];
         }
         else if (check === players[1].getMark()){
-            players[1].increaseWinCount();
             switchActivePlayer();
             return players[1];
         }
@@ -181,7 +169,6 @@ const displayController = (() => {
         if (!selectedSpot || e.target.classList[1]){
             return;
         }
-        console.log(e.target.classList[0]);
         const ret = gameController.playRound(selectedSpot);
         updateDisplay();
         if (ret){
@@ -231,7 +218,3 @@ const displayController = (() => {
         updateDisplay
     };
 })();
-
-//gameBoard.makeBoard();
-
-//displayController.updateDisplay();
