@@ -69,29 +69,31 @@ const gameController = (() => {
         let retVal = " ";
         const board = gameBoard.getBoard();
         console.log(board);
-        if ((board[0][0] === board[1][1]) && (board[1][1] === board[2][2])){
+        if ((board[0][0]!= "") && ((board[0][0] === board[1][1]) && (board[1][1] === board[2][2]))){
             retVal = board[0][0];
+            return board[0][0]
             console.log('lol')
         }
-        else if ((board[0][2] === board[1][1]) && (board[1][1] === board[2][0])){
+        else if ((board[0][2]!= "") && ((board[0][2] === board[1][1]) && (board[1][1] === board[2][0]))){
             retVal = board[0][2];
+            return board[0][2];
             console.log('0 2 -> 1 1 ->2 0')
         }
         else {
             for (let i = 0; i < 3; i++){
-                if ((board[0][i] === board[1][i]) && (board[1][i] === board[2][i])){
+                console.log(board[0][i] + " " + board[1][i] +" " + board[2][i]);
+                if ((board[0][i]!= "") && ((board[0][i] === board[1][i]) && (board[1][i] === board[2][i]))){
                     retVal = board[0][i];
-
+                    return retVal;
                     //break;
                 }
-                else if ((board[i][0] === board[i][1]) && (board[i][1] === board[i][2])){
+                else if ((board[i][0]!= "") && ((board[i][0] === board[i][1]) && (board[i][1] === board[i][2]))){
                     retVal = board[i][0];
-
+                    return retVal;
                     //break;
                 }
             }
         }
-        return retVal;
 
     }
 
@@ -116,16 +118,26 @@ const gameController = (() => {
         if (turn === 8){
             return "tie"
         }
-
+    
         switchActivePlayer();
         console.log(turn);
         turn++;
     }
 
+    const resetTurns = () => {
+        turn = 0;
+    }
+
+    const forcePlayerOne = () =>{
+        activePlayer = players[0];
+    }
+
     return {
         playRound,
         getActivePlayer,
-        setNames
+        setNames,
+        resetTurns, 
+        forcePlayerOne
     };
 
 })();
@@ -133,6 +145,10 @@ const gameController = (() => {
 const displayController = (() => {
     const activePlayerDiv = document.querySelector(".turn");
     const boardDiv = document.querySelector(".board");
+    const beginDiv = document.querySelector(".begin");
+    const gameDiv = document.querySelector(".game");
+    const restartDiv = document.querySelector(".restart-btn");
+    const newGameDiv = document.querySelector(".new-game-btn");
 
     const updateDisplay = () =>{
         boardDiv.textContent = "";
@@ -192,14 +208,24 @@ const displayController = (() => {
         const playerTwoName = formData.get("two-name");
         gameController.setNames(playerOneName, playerTwoName);
         gameBoard.makeBoard();
+        gameController.forcePlayerOne();
         updateDisplay();
-        document.querySelector(".begin").style.display = "none";
-        document.querySelector(".container").style.display = "block";
+        beginDiv.style.display = "none";
+        gameDiv.style.display = "block";
+    }
+
+    function clickRestart(e){
+        beginDiv.style.display = "block";
+        gameDiv.style.display = "none";
+        newGameDiv.style.display = "none";
+        gameController.resetTurns();
     }
 
     boardDiv.addEventListener("click", clickSpot);
 
     document.querySelector(".name-form").addEventListener("submit", startGame);
+
+    restartDiv.addEventListener("click", clickRestart);
 
     return {
         updateDisplay
