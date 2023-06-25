@@ -13,8 +13,11 @@
         <div class="container">
             <div class="board"></div>
         </div>
-        <button class="ui-btn restart-btn">Restart</button>
-        <button class="ui-btn new-game-btn">New Game</button>
+
+        <div class="buttons">
+            <button class="ui-btn restart-btn">Restart</button>
+            <button class="ui-btn new-game-btn">New Game</button>
+        </div>
     </div>
     <div class="begin">
         <h1>Tic Tac Toe</h1>
@@ -22,11 +25,11 @@
             <form action="#" class="name-form">
                 <div class="form-header">Enter your names:</div>
                 <label for="player-one-name">Player One:</label>
-                <input id="player-one-name" name="one-name" type="text" value="Player One" maxlength="20" required>
+                <input id="player-one-name" name="one-name" type="text" value="Player One" maxlength="15" required>
             
                 <label for="player-two-name">Player Two:</label>
             
-                <input id="player-two-name" name="two-name" type="text" value="Player Two" maxlength="20" required>
+                <input id="player-two-name" name="two-name" type="text" value="Player Two" maxlength="15" required>
                 <button type="submit" id="start-btn" class="ui-btn">Start Game</button>
             </form>
         </div>
